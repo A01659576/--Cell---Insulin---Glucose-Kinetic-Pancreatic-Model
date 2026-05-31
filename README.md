@@ -6,6 +6,7 @@ Este repositorio contiene el desarrollo y análisis de un modelo matemático par
 
 - **Fase2_Code.ipynb**: Notebook de Python donde se realiza la verificación de cálculos numéricos, obtención de puntos de equilibrio y análisis del Jacobiano del sistema.
 - **Phase4.ipynb**: Notebook de Python dedicado al análisis de estabilidad de los puntos de equilibrio usando el criterio de Hurwitz-Routh y el cálculo de autovalores del Jacobiano.
+- **Fase3_local.ipynb**: Código para la creación de planos fase locales.
 - **Diagrama_Global.md**: Código y explicación en MATLAB para la simulación y visualización del diagrama global del sistema, incluyendo trayectorias y puntos de equilibrio.
 - **README.md**: Este archivo.
 
