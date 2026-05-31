@@ -1,4 +1,4 @@
-# Modelo Cinético Pancreático Célula-Insulina-Glucosa
+# Sistema de células β – glucosa – insulina en presencia de epinefrina
 
 Este repositorio contiene el desarrollo y análisis de un modelo matemático para el estudio de la dinámica entre células pancreáticas, insulina y glucosa. El trabajo se divide en varias fases, cada una documentada en archivos Jupyter Notebook y MATLAB.
 
