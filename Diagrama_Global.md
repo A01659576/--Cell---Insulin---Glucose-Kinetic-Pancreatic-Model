@@ -8,6 +8,8 @@ Warning: Function ge has the same name as a MATLAB built-in. We suggest you rena
 ```
 
 ```matlab
+%% Fase 4 - Diagrama Global
+% Paulina Leal Mosqueda A01659576, Santiago Nava Figueroa A01174557, Carlo Crivelli Hernández A01656171, %% Ricardo Villareal Bazán A01666859
 %% =====================================================
 % PARÁMETROS
 % =====================================================
@@ -126,11 +128,8 @@ scatter3(E3(1),E3(2),E3(3),50,col3,'MarkerFaceColor', [0.15 0.15 0.15], ...
 text(E1(1)-45, E1(2)+0.3, E1(3)+8,  'E_1','FontSize',13,'FontWeight','bold','Color',col1);
 text(E2(1)+10, E2(2)+0.3, E2(3)+8,  'E_2','FontSize',13,'FontWeight','bold','Color',col2);
 text(E3(1)+10, E3(2)+0.3, E3(3)+8,  'E_3','FontSize',13,'FontWeight','bold','Color',col3);
-```
 
-![figure_0.png](./UUUU_media/figure_0.png)
 
-```matlab
 
 
 function [val, isterm, dir] = eventoE1(~, y, E1)
@@ -138,4 +137,3 @@ function [val, isterm, dir] = eventoE1(~, y, E1)
     isterm = 1;
     dir    = -1;
 end
-```
