@@ -1,0 +1,125 @@
+```matlab
+clear; clc; close all;
+%% Autores
+%% Paulina Leal Mosqueda A01659576, Santiago Nava Figueroa A01174557,
+% Carlo Crivelli Hernández A01656171, Ricardo Villareal Bazán A01666859
+%% =====================================================
+% PARÁMETROS
+% =====================================================
+R0 = 864; Ge = 140; EGO = 1.44; SI = 0.72;
+sigma = 43.2; alpha = 20000; rho = 0.41; k = 432;
+d0 = 0.06; r1 = 0.84e-3; r2 = 0.24e-5;
+
+
+%% =====================================================
+% SISTEMA (Ecuaciones Diferenciales)
+% =====================================================
+f = @(t,y) [
+    R0 + Ge - (EGO + SI*y(2))*y(1);
+    (y(3)*sigma*y(1)^2)/(alpha + y(1)^2) - (rho + k)*y(2);
+    (-d0 + r1*y(1) - r2*y(1)^2)*y(3)
+];
+
+
+%% =====================================================
+% PUNTOS DE EQUILIBRIO REALES 
+% =====================================================
+E0 = [697.22, 0, 0];          % Estable
+E1 = [100, 11.944, 358.673];  % Estable
+E2 = [250, 3.578, 47.271];    % Punto Silla
+
+
+%================================================
+% GENERACIÓN DE CONDICIONES
+% =====================================================
+ICs = [];
+num_puntos = 15; % Generará 15 puntos
+
+
+for i = 1:num_puntos
+    % crear factores aleatorios de escala entre 1 y 30
+    pert1 = 1 + (30 - 1) * rand();
+    pert2 = 1 + (30 - 1) * rand();
+    pert3 = 1 + (30 - 1) * rand();
+    pert4 = 1 + (30 - 1) * rand();
+    
+    % Sembramos las perturbaciones aleatorias en las 4 direcciones
+    ICs = [ICs; E2 + [-pert1*1.5,  pert1*0.1,  pert1*5]]; % cerca de E1
+    ICs = [ICs; E2 + [-pert2*0.5, -pert2*0.05, pert2*8]]; % abajo en I, arriba en beta
+    ICs = [ICs; E2 + [ pert3*2,   -pert3*0.1, -pert3*1.5]]; % abajo en I, abajo en beta
+    ICs = [ICs; E2 + [ pert4*1,    pert4*0.02, -pert4*2.5]]; % cerca de E0
+end
+
+
+% generar puntos alrededor de los puntos de equilibrio
+ICs = [ICs;
+    [200, 7,  100];
+    [170, 8,  150];
+    [150, 9,  200];
+    [130, 10, 250];
+    [115, 11, 300];
+];
+
+
+%% =====================================================
+% Plano Fase - Global 3D
+% =====================================================
+figure('Color','w','Position',[100 100 900 650]);
+hold on; grid on; box on;
+xlabel('G','FontSize',12,'FontWeight','bold');
+ylabel('I','FontSize',12,'FontWeight','bold');
+zlabel('\beta','FontSize',12,'FontWeight','bold');
+title('Retrato de Fase Global con más Trayectorias', 'FontSize',13,'FontWeight','bold');
+
+
+% Ajuste de límites
+xlim([0 850]); ylim([0 20]); zlim([0 420]);
+view(125, 20);
+
+
+%% =====================================================
+% INTEGRACIÓN NUMÉRICA Y GRÁFICA DE TRAYECTORIAS
+% =====================================================
+options = odeset('RelTol',1e-8,'AbsTol',1e-8);
+
+
+for i = 1:size(ICs,1)
+    if any(ICs(i,:) < 0), continue; end
+    
+    % usar ode15s para el sistema
+    % resolver el sistema según condición inicial i
+    [t, y] = ode15s(f, [0 1500], ICs(i,:), options);
+    
+    % Si la trayectoria va hacia el punto sano (E1), azul
+    if y(end, 3) > 100
+        plot3(y(:,1), y(:,2), y(:,3), 'Color', [0.2 0.4 0.8 0.5], 'LineWidth', 1.2);
+    % Si va hacia el colapso (E0), naranja
+    else
+        plot3(y(:,1), y(:,2), y(:,3), 'Color', [0.9 0.5 0.2 0.5], 'LineWidth', 1.2);
+    end
+end
+
+
+%% =====================================================
+% DIBUJAR PUNTOS DE EQUILIBRIO CON TRANSPARENCIA
+% =====================================================
+% E1
+s1 = scatter3(E1(1), E1(2), E1(3), 45, 'MarkerFaceColor', [0.1 0.6 0.2], 'MarkerEdgeColor', 'k');
+s1.MarkerFaceAlpha = 0.6;
+s1.MarkerEdgeAlpha = 0.6;
+text(E1(1)-50, E1(2), E1(3)+20, 'E_1', 'FontSize',11,'FontWeight','bold','Color',[0.1 0.6 0.2]);
+
+
+% E0
+s0 = scatter3(E0(1), E0(2), E0(3), 45, 'MarkerFaceColor', [0.8 0.1 0.1], 'MarkerEdgeColor', 'k');
+s0.MarkerFaceAlpha = 0.6;
+s0.MarkerEdgeAlpha = 0.6;
+text(E0(1)+20, E0(2), E0(3)+15, 'E_0', 'FontSize',11,'FontWeight','bold','Color',[0.8 0.1 0.1]);
+
+
+% E2: Punto Silla
+s2 = scatter3(E2(1), E2(2), E2(3), 45, 'MarkerFaceColor', [0.1 0.2 0.8], 'MarkerEdgeColor', 'k');
+s2.MarkerFaceAlpha = 0.6;
+s2.MarkerEdgeAlpha = 0.6;
+text(E2(1)+20, E2(2)+0.5, E2(3)+15, 'E_2', 'FontSize',11,'FontWeight','bold','Color',[0.1 0.2 0.8]);
+```
