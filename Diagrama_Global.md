@@ -125,9 +125,9 @@ scatter3(E3(1),E3(2),E3(3),50,col3,'MarkerFaceColor', [0.15 0.15 0.15], ...
     'MarkerEdgeColor', 'none');
 
 
-text(E1(1)-45, E1(2)+0.3, E1(3)+8,  'E_1','FontSize',13,'FontWeight','bold','Color',col1);
-text(E2(1)+10, E2(2)+0.3, E2(3)+8,  'E_2','FontSize',13,'FontWeight','bold','Color',col2);
-text(E3(1)+10, E3(2)+0.3, E3(3)+8,  'E_3','FontSize',13,'FontWeight','bold','Color',col3);
+text(E1(1)-45, E1(2)+0.3, E1(3)+8,  'E_0','FontSize',13,'FontWeight','bold','Color',col1);
+text(E2(1)+10, E2(2)+0.3, E2(3)+8,  'E_1','FontSize',13,'FontWeight','bold','Color',col2);
+text(E3(1)+10, E3(2)+0.3, E3(3)+8,  'E_2','FontSize',13,'FontWeight','bold','Color',col3);
 
 
 
