@@ -36,4 +36,4 @@ Este repositorio contiene el desarrollo y análisis de un modelo matemático par
 
 ## Requisitos
 - Python 3.x con las librerías: numpy, sympy, matplotlib (para notebooks de Python).
-- MATLAB (para simulaciones y visualizaciones en Diagrama_Global.md).
+- MATLAB (para simulaciones y visualizaciones en Diagrama_Global.md y Diagrama_Global_Trayectorias.md).
