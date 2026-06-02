@@ -34,7 +34,7 @@ E2 = [250, 3.578, 47.271];    % Punto Silla
 % =====================================================
 ICs = [];
 num_puntos = 15; % Generará 15 puntos
-
+rng(42); % seed
 
 for i = 1:num_puntos
     % crear factores aleatorios de escala entre 1 y 30
