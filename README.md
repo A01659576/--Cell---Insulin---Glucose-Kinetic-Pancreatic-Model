@@ -9,6 +9,8 @@ Este repositorio contiene el desarrollo y análisis de un modelo matemático par
 - **Fase3_local.ipynb**: Código para la creación de planos fase locales.
 - **Diagrama_Global.md**: Código y explicación en MATLAB para la simulación y visualización del diagrama global del sistema, incluyendo trayectorias y puntos de equilibrio.
 - **Diagrama_Global_Trayectorias.md**: Segunda gráfica tridimensional para el sistema.
+- **Reporte**: Documento Escrito
+- **Presentación**
 - **README.md**: Este archivo.
 
 ## Descripción de las fases principales
